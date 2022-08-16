@@ -1,6 +1,7 @@
 package com.ironhack.university.repository;
 
 import com.ironhack.university.model.Course;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,11 @@ public class CourseRepositoryTest {
     @Autowired
     CourseRepository courseRepository;
 
+    @AfterEach
+    void tearDown() {
+        courseRepository.deleteAll();
+    }
+
     @Test
     public void addNewCourse() {
         Course course = new Course("CS105", "Intro to SpringBoot and JPA");
@@ -25,6 +31,11 @@ public class CourseRepositoryTest {
         Optional<Course> result = courseRepository.findById("CS105");
         assertTrue(result.isPresent());
         assertEquals(course, result.get());
+
+        courseRepository.findAll();
+        courseRepository.delete(course);
+        course.setCourseName("Intro to springboot");
+        courseRepository.save(course);
 
 
 
