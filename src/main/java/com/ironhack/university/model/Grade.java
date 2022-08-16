@@ -9,16 +9,25 @@ import javax.persistence.Id;
 public class Grade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String studentName;
     private String sectionId;
     private Integer score;
 
-    public Long getId() {
+    public Grade(String studentName, String sectionId, Integer score) {
+        this.studentName = studentName;
+        this.sectionId = sectionId;
+        this.score = score;
+    }
+
+    public Grade() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

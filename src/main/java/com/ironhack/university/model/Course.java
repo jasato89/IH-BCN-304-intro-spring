@@ -12,7 +12,6 @@ public class Course {
 
     @Id
     private String courseCode;
-    @Column(name = "nombre_del_curso")
     private String courseName;
 
     public Course(){};

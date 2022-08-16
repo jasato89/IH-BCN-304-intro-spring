@@ -11,7 +11,7 @@ public class Section {
     @Id
     private String id;
     private String courseCode;
-    private Integer roomNumber;
+    private Short roomNum;
     private String instructor;
 
 
@@ -31,12 +31,12 @@ public class Section {
         this.courseCode = courseCode;
     }
 
-    public Integer getRoomNumber() {
-        return roomNumber;
+    public Short getRoomNum() {
+        return roomNum;
     }
 
-    public void setRoomNumber(Integer roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoomNum(Short roomNum) {
+        this.roomNum = roomNum;
     }
 
     public String getInstructor() {
