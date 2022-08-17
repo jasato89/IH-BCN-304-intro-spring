@@ -12,8 +12,8 @@ public class MathSection extends Section {
         this.mathCredits = 0;
     }
 
-    public MathSection(String courseCode, Short roomNum, String instructor, int mathCredits) {
-        super(courseCode, roomNum, instructor);
+    public MathSection(String id, String courseCode, Short roomNum, String instructor, int mathCredits) {
+        super(id, courseCode, roomNum, instructor);
         this.mathCredits = mathCredits;
     }
 

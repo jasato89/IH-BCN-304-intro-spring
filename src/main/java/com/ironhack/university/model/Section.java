@@ -16,7 +16,8 @@ public class Section {
 
     }
 
-    public Section(String courseCode, Short roomNum, String instructor) {
+    public Section(String id, String courseCode, Short roomNum, String instructor) {
+        this.id = id;
         this.courseCode = courseCode;
         this.roomNum = roomNum;
         this.instructor = instructor;

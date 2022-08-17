@@ -9,8 +9,8 @@ public class ScienceSection extends Section{
     private final int numberOfLabHours;
     private String labRoom;
 
-    public ScienceSection(String courseCode, Short roomNum, String instructor, int numberOfLabHours, String labRoom) {
-        super(courseCode, roomNum, instructor);
+    public ScienceSection(String id, String courseCode, Short roomNum, String instructor, int numberOfLabHours, String labRoom) {
+        super(id,courseCode, roomNum, instructor);
         this.numberOfLabHours = numberOfLabHours;
         this.labRoom = labRoom;
     }
