@@ -26,5 +26,8 @@ public interface GradeRepository extends JpaRepository<Grade, Long> {
     @Query("SELECT AVG (score) from Grade WHERE sectionId = :section GROUP BY sectionId")
     Double findAverageBySection(String section);
 
+    @Query("SELECT studentName, AVG(score) from Grade GROUP BY studentName HAVING AVG(score) < :score")
+    List<Object[]> findStudentNameAndAvgScoreLowerThan(Double score);
+
 
 }

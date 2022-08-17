@@ -1,11 +1,9 @@
 package com.ironhack.university.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Section {
 
     @Id
@@ -14,6 +12,15 @@ public class Section {
     private Short roomNum;
     private String instructor;
 
+    public Section() {
+
+    }
+
+    public Section(String courseCode, Short roomNum, String instructor) {
+        this.courseCode = courseCode;
+        this.roomNum = roomNum;
+        this.instructor = instructor;
+    }
 
     public String getId() {
         return id;

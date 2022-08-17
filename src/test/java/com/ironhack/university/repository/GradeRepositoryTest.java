@@ -126,4 +126,12 @@ public class GradeRepositoryTest {
         Double expected = gradeRepository.findAverageBySection("CS101-B");
         assertEquals(70.0, expected);
     }
+
+    @Test
+    void findStudentsWithAnAverageLower() {
+        List<Object[]> expected = gradeRepository.findStudentNameAndAvgScoreLowerThan(75.0);
+        assertEquals("Gerard", expected.get(0)[0]);
+        assertEquals(67.5, expected.get(0)[1]);
+
+    }
 }
