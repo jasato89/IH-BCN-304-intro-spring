@@ -30,12 +30,11 @@ public class GradeRepositoryTest {
         grade3 = new Grade("Gerard", "CS101-A", 60);
         grade4 = new Grade("Alessio", "CS101-A", 90);
         grade5 = new Grade("Nil", "CS101-A", 75);
-        gradeRepository.saveAll(List.of(grade1, grade2, grade3, grade4, grade5));
+        //gradeRepository.saveAll(List.of(grade1, grade2, grade3, grade4, grade5));
     }
 
     @AfterEach
     void tearDown() {
-        gradeRepository.deleteAll();
     }
 
     @Test
@@ -61,12 +60,6 @@ public class GradeRepositoryTest {
         assertEquals(1, result.size());
     }
 
-    /*
-        Optional<Grade> findByStudentNameAndSectionId(String studentName, String sectionId);
-    List<Grade> findAllByStudentNameContaining(String studentName);
-    List<Grade> findByScoreBetween(Integer min, Integer max);
-    List<Grade> findByScoreGreaterThan(Integer min);
-     */
 
     @Test
     void findByStudentNameAndSectionId() {
@@ -117,5 +110,20 @@ public class GradeRepositoryTest {
         assertEquals(0, grades.size());
 
 
+    }
+
+    @Test
+    void findAverageBySection() {
+
+        List<Object[]> expected = gradeRepository.findAverageBySection();
+
+        assertEquals("CS101-A", expected.get(0)[0]);
+
+    }
+
+    @Test
+    void findAverageBySectionId() {
+        Double expected = gradeRepository.findAverageBySection("CS101-B");
+        assertEquals(70.0, expected);
     }
 }
