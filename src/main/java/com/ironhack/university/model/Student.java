@@ -1,6 +1,8 @@
 package com.ironhack.university.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -12,6 +14,13 @@ public class Student {
     @OneToOne
     @JoinColumn(name = "welcome_pack_id")
     private WelcomePack welcomePack;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "students_assignments",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "assignment_id")}
+    )
+    private List<Assignment> assignments = new ArrayList<>();
 
     @Embedded
     private Address primaryAddress;
@@ -40,6 +49,23 @@ public class Student {
         this.primaryAddress = primaryAddress;
         this.welcomePack = welcomePack;
         this.postalAddress = postalAddress;
+    }
+
+    public Student(String firstName, String lastName, WelcomePack welcomePack, List<Assignment> assignments, Address primaryAddress, Address postalAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.welcomePack = welcomePack;
+        this.assignments = assignments;
+        this.primaryAddress = primaryAddress;
+        this.postalAddress = postalAddress;
+    }
+
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
     }
 
     public Address getPrimaryAddress() {
