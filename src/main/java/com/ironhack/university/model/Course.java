@@ -1,9 +1,10 @@
 package com.ironhack.university.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,12 +14,15 @@ public class Course {
     @Id
     private String courseCode;
     private String courseName;
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private List<Section> sections = new ArrayList<>();
 
     public Course(){};
 
-    public Course(String courseCode, String courseName) {
+    public Course(String courseCode, String courseName, List<Section> sections) {
         this.courseCode = courseCode;
         this.courseName = courseName;
+        this.sections = sections;
     }
 
     public String getCourseCode() {
@@ -35,6 +39,14 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
     }
 
     @Override

@@ -8,19 +8,30 @@ public class Section {
 
     @Id
     private String id;
-    private String courseCode;
+    private String code;
     private Short roomNum;
     private String instructor;
+    @ManyToOne
+    @JoinColumn(name = "course_code")
+    private Course course;
 
     public Section() {
 
     }
 
-    public Section(String id, String courseCode, Short roomNum, String instructor) {
+    public Section(String id, String code, Short roomNum, String instructor) {
         this.id = id;
-        this.courseCode = courseCode;
+        this.code = code;
         this.roomNum = roomNum;
         this.instructor = instructor;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public String getId() {
@@ -31,12 +42,12 @@ public class Section {
         this.id = id;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public void setCode(String courseCode) {
+        this.code = courseCode;
     }
 
     public Short getRoomNum() {
@@ -54,4 +65,6 @@ public class Section {
     public void setInstructor(String instructor) {
         this.instructor = instructor;
     }
+
+
 }
