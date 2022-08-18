@@ -9,6 +9,10 @@ public class Student {
     private Long id;
     private String firstName;
     private String lastName;
+    @OneToOne
+    @JoinColumn(name = "welcome_pack_id")
+    private WelcomePack welcomePack;
+
     @Embedded
     private Address primaryAddress;
     @Embedded
@@ -24,10 +28,17 @@ public class Student {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, Address primaryAddress, Address postalAddress) {
+    public Student(String firstName, String lastName, WelcomePack welcomePack) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.welcomePack = welcomePack;
+    }
+
+    public Student(String firstName, String lastName, WelcomePack welcomePack, Address primaryAddress, Address postalAddress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.primaryAddress = primaryAddress;
+        this.welcomePack = welcomePack;
         this.postalAddress = postalAddress;
     }
 
@@ -45,6 +56,14 @@ public class Student {
 
     public void setPrimaryAddress(Address primaryAddress) {
         this.primaryAddress = primaryAddress;
+    }
+
+    public WelcomePack getWelcomePack() {
+        return welcomePack;
+    }
+
+    public void setWelcomePack(WelcomePack welcomePack) {
+        this.welcomePack = welcomePack;
     }
 
     public Long getId() {
